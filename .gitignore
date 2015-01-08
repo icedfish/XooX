@@ -1,0 +1,4 @@
+*.pyc
+.idea
+server_list/*.conf
+!server_list/sample-db.conf
