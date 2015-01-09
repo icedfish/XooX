@@ -2,8 +2,11 @@
 
 import os
 from fabric.api import *
-from lib.tools import *
-from lib.server_init import *
+from lib.xoox import *
+from lib.all import *
+
+#avoid local known_host changes
+env.disable_known_hosts=True
 
 def l(*args):
     #python里面排版好麻烦 T_T
@@ -13,6 +16,7 @@ Usage:
 
     fab l:'*' [cmd]
     fab l:'dev-*' [cmd]
+    fab l:'*-db-*' [cmd]
     fab l:sample-db [cmd]
 
 Available Commands:"""
@@ -29,8 +33,16 @@ Available Commands:"""
 
 def init_centos_6():
     "Designed for init CentOS 6.6 x64"
+    #yum upgrade
+    #tsar
+    #service
+    #dns + nscd
+    #ulimit
+    #disable ipv6
+    #bash improve
     pass
 
+@parallel(pool_size=5)
 def uptime():
     run('uptime')
     pass
